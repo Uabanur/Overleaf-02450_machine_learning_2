@@ -1,0 +1,29 @@
+\subsection{Prediction using classification models}
+
+For all 3 models, giving a meaningful interpretation of how they fit onto our data set is difficult, mainly because our data is complicated. However, in this section, it will be attempted.
+
+
+\subsubsection{K-nearest neighbors}
+
+Our best choice of a K-nearest neighbors model ('best' from the perspective of cross-validation) classifies a data point by looking at the 3 nearest neighbors of our original data that it is most correlated with \footnote{It should be explained that when two data points $\vek{x}$ and $\vek{z}$ are correlated, it means that the trend of the coordinates of $\vek{x}$ follows the trend of the coordinates of $\vek{z}$. A trend could for instance be that the coordinates $x_1, x_2,...$ first rise in value and then fall.}. This means that the absolute values of the coordinates of a data point are not important, but rather the proportions between them. In our case, the coordinates of a given data point (i.e. a piece of glass) are the refractive index and its chemical weight percentages. Thus, a given test data point $\vek{x}_{test}$ is classified as the class of the 3 training data points whose proportions between their RI and weight percentages best matches $\vek{x}_{test}$. If the 3 nearest neighbors have different classes, we either choose the most prevalent class or, if all 3 neighbors are different, the class of the nearest one.
+
+\subsubsection{Decision tree}
+The best decision tree according to our cross-validation algorithm is illustrated in appendix \ref{dt-illustration}. Roughly speaking, it classifies a test data point by asking questions about its attributes, like 'is this chemical weight percentage greater than or smaller than some value', and, based on the answer, it will either classify our data point or pass it on to another question. We will not go more into detail with this decision tree, since it is way too complicated to simply describe. It is almost surprising that such a complicated decision tree is favored by the data.
+
+\subsubsection{Artificial neural network}
+A new observation is classified by the optimal ANN in the following way: \textbf{1.} The 8 input attributes (chemical weight percentages \texttt{Ca}, \texttt{Ma}.., standardized) of an observation $\bm{y}$ are given to the $M=8$ input nodes. \textbf{2.} Each of the $H=7$ hidden layer node values is computed by applying the \texttt{tansig} function (hyperbolic tangent sigmoid) to all input node values, and scaling with a set weights (selected during training). \textbf{3.} The $D=7$ output node values are computed by applying the \texttt{softmax} function to every hidden node value, scaling with another set of weights selected during training. Each output values correspond to the probability that the observation $\bm{y}$ belongs to the class given the node index. \textbf{4.} The observation is classified as the index of the output node with the highest value.
+
+\subsubsection{Performance results of the different models}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c c c}
+     & Decision tree & K-nearest neighbors & Artificial Neural Network \\ \hline
+    %%%% New row
+    \thead{Best\\parameters}     & \thead{Impurity measure = Gini \\ Pruning level = 1} & \thead{Distance measure = Correlation \\ K = 3} & \thead{H = 7 \\hidden nodes} \\ 
+    %%%% New row
+    $\hat{E}_{\texttt{gen}} $     & 23.9\% & 19.1 \% & 28.6 \%
+    \end{tabular}
+    \caption{Table of performance results of the different models.}
+    \label{classification-performance}
+\end{table}

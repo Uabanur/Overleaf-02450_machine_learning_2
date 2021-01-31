@@ -1,0 +1,23 @@
+\usepackage{tikz}
+\usepackage{collcell}
+
+ %The min, mid and max values
+\newcommand*{\MinNumber}{0.0}%
+\newcommand*{\MidNumber}{0.5} %
+\newcommand*{\MaxNumber}{1.0}%
+
+%Apply the gradient macro
+\newcommand{\ApplyGradient}[1]{%
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \fi
+}
+
+\newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+\renewcommand{\arraystretch}{0}
+\setlength{\fboxsep}{3mm} % box size
+\setlength{\tabcolsep}{0pt}

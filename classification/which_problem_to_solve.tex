@@ -1,0 +1,9 @@
+\subsection{Objective}
+
+The classification problem chosen for this report is to classify the glass \texttt{type} based on the 8 chemical weight percentage attributes and the refractive index. This is attempted by fitting three different models to our data: A decision tree (DT), a K-nearest neighbors (KNN) model, and an artificial neural network (ANN). 
+
+\subsubsection{Basic setup and cross-validation}\label{sec:cross_validation_jutification}
+
+Prior to fitting the data, each of the input attributes (the weight percentages and the refractive index) are standardized by subtracting the mean of the attribute and dividing by the standard deviation.
+
+The optimal parameters of the models and estimates of their generalization errors are determined using two layer stratified cross-validation (CV) as laid out in Ref. \cite{coursenotes}, Sec. 9.1.5, Algorithm 5. Holdout CV is employed on the outer loop and 10-fold CV is employed on the inner loop. In the interest of fairness, the same CV splits have been used to analyze the three different models. The loss function associated with the generalization error is chosen as the percentage of incorrectly classified data, which will be repeatedly referred to as the classification error rate throughout this report. The reason that the cross-validation is stratified (i.e. each CV-fold contains roughly the same proportions of each class) is that the number of data points for each class varies wildly: The largest class, \texttt{building non-float} corresponds to 70 data points while the smallest class, \texttt{tableware} corresponds to only 9 data points.

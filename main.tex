@@ -1,0 +1,56 @@
+\documentclass{article}
+
+
+\input{header.tex}
+
+\begin{document}
+%\pagenumbering{gobble}
+
+
+\input{frontpage.tex}
+
+
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+\pagenumbering{gobble}
+
+\newpage
+\pagenumbering{arabic}
+\section{Introduction}
+\input{introduction.tex}
+
+\section{Regression}
+\input{regression/intro.tex}
+\input{regression/problem_to_solve.tex}
+\input{regression/linear_regression.tex}
+\input{regression/prediction.tex}
+\input{regression/ann.tex}
+\input{regression/evaluation.tex}
+
+
+\section{Classification}
+\input{classification/which_problem_to_solve.tex}
+\input{classification/applying_methods.tex}
+\input{classification/explain_how_new_observation_is_classified.tex}
+\input{classification/statistic_comparison.tex}
+
+\vspace{- 0.2 cm}
+\section{Discussion \&  Conclusion}\label{sec:discussion}
+\input{discussion/intro.tex}
+
+\newpage
+% Bibliografi (hvis nogen var i tvivl...)
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\section*{Appendix}
+% Nedenstående tilføjer appendix til indholdsfortegnelse selvom det er skrevet ovenfor med \section*
+\addcontentsline{toc}{section}{Appendix: Group member contribution}
+\input{appendix/contribution.tex}
+\input{appendix/reg_ann.tex}
+\input{appendix/class_ann.tex}
+\input{appendix/decision-tree.tex}
+
+
+\end{document}

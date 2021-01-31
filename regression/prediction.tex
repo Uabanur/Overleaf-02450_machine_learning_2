@@ -1,0 +1,23 @@
+\subsection{Prediction using linear regression model}
+
+Following the estimated model found in the previous section, the refractive index is predicted using the attributes present in the regression equation shown in figure \ref{fig:linreg_fs}. The final regression equation is:
+
+\begin{equation*}
+    \widetilde{\texttt{RI}} = 8.93\cdot 10^{-3} - 0.277 \cdot \texttt{Al} - 0.42 \cdot \texttt{Si} + 0.647 \cdot \texttt{Ca} + 0.172 \cdot \texttt{Ba} + 0.046 \cdot \texttt{K}\cdot\texttt{Si}
+\end{equation*}
+
+where $\widetilde{\texttt{RI}}$ is the predicted refractive index, and the remaining variables are the weight percentage of the respective elements.
+
+The model predicts the refractive index using the attributes Al, Si, Ca, Ba and a combination of K and Si. Here the regression dictates that, presence of Al and Si lowers the refractive index, and the presence of the remaining selected attributes raises the refractive index. The bias in this model (y-intercept) has very little impact as expected since the data is standardized.
+
+Looking at the correlations between the attributes from report 1 section 3.4, as shown in table \ref{tab:attcorr}, we see that the found regression agree nicely with the correlations, as expected.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|| c c c c c c c c}
+        ~ & \texttt{Na} & \texttt{Mg} & \texttt{Al} & \texttt{Si} & \texttt{K} & \texttt{Ca} & \texttt{Ba} & \texttt{Fe} \\ \hline \hline
+        \texttt{RI} & -0.19 & -0.12 & -0.41 & -0.54 & -0.29 & 0.81 & -0.00 & 0.14
+    \end{tabular}
+    \caption{Excerpt from the correlation matrix for attributes from report 1 section 3.4.}
+    \label{tab:attcorr}
+\end{table} 
